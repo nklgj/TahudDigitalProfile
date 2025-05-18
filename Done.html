@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>BSIT Personal Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+
+.skills-languages {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.skills-languages h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.skills-languages ul {
+  padding-left: 1.25rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.skills-languages ul li {
+  list-style-type: disc;
+}
+
+
+
+.documentation-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.documentation-gallery img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.documentation-gallery img:hover {
+  transform: scale(1.02);
+}
+
+
+#resume {
+  font-family: Arial, sans-serif;
+  font-size: 14pt;
+  background: white;
+  color: #000;
+  padding: 2rem;
+  width: 210mm;
+  min-height: 297mm;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.resume-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.left-column {
+  width: 45%;
+}
+
+.right-column {
+  width: 65%;
+}
+
+.profile-pic {
+  width: 100%;
+  border: 10px solid white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.skill-bar {
+  background-color: #ddd;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.skill-bar span {
+  display: block;
+  height: 100%;
+  background-color: #333;
+  border-radius: 4px;
+}
+
+h1 {
+  font-size: 24pt;
+  margin: 0;
+}
+
+h1 span {
+  font-weight: bold;
+}
+
+.subtitle {
+  background: #ccc;
+  padding: 4px 10px;
+  display: inline-block;
+  margin: 0.5rem 0 1rem;
+}
+
+h2 {
+  border-bottom: 1px solid #999;
+  padding-bottom: 4px;
+  margin-top: 1.5rem;
+}
+
+ul {
+  padding-left: 1rem;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
+
+.project-category {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-category.active {
+  display: block;
+  opacity: 1;
+}
+
+.project-category ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.project-category li {
+  background: var(--card-bg);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+    :root {
+      --bg: #0f0f0f;
+      --fg: #ffffff;
+      --accent: #00ffff;
+      --card-bg: #1a1a1a;
+    }
+
+    /* THEME CLASSES */
+body.default-theme {
+  --bg: #0f0f0f;
+  --fg: #ffffff;
+  --accent: #00ffff;
+  --card-bg: #1a1a1a;
+}
+
+body.dark-theme {
+  --bg: #000000;
+  --fg: #ffffff;
+  --accent: #b940ff;
+  --card-bg: #121212;
+}
+
+body.light-theme {
+  --bg: #f5f5f5;
+  --fg: #040404;
+  --accent: #52cc00;
+  --card-bg: #ffffff;
+}
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      background: var(--card-bg);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    section {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      padding: 3rem 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    section.active {
+      display: block;
+      opacity: 1;
+    }
+
+    h2 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .typing {
+      font-size: 1.2rem;
+      font-weight: 500;
+      border-right: 2px solid var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 3s steps(30) forwards, blink 0.6s step-end infinite;
+    }
+
+    @keyframes typing {
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .project {
+      background: var(--card-bg);
+      padding: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 45%;
+    }
+
+    .project img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 10px;
+      color: var(--fg);
+      max-width: 500px;
+    }
+
+    .close {
+      margin-top: 1rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    .resume-btn, .toggle-btn {
+      background: var(--accent);
+      color: black (241, 238, 238);
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1rem;
+      display: inline-block;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      background: var(--card-bg);
+      color: var(--fg);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+    }
+
+    form button {
+      background: var(--accent);
+      color: black;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Lightbox2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
+
+
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000, // Animation duration (in ms)
+    once: true      // Only animate once
+  });
+</script>
+
+
+  <div id="particles-js"></div>
+
+  <nav>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('projects')">Projects</a>
+    <a onclick="showSection('resume')">Resume</a>
+    <a onclick="showSection('settings')">Settings</a>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home" class="page active">
+    <div class="section-container">
+      <h1 class="section-title">Welcome</h1>
+      <p class="section-description">
+        Welcome to my personal profile website. Here you'll find everything about my projects, background, skills, and documentation of my journey as a BSIT.
+      </p>
+
+      <!-- Personal Skills and Languages Section -->
+<div class="skills-languages mt-6 mb-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Personal Skills -->
+    <div data-aos="fade-right">
+      <h2 class="text-xl font-semibold mb-2">Personal Skills</h2>
+      <ul class="list-disc list-inside text-gray-700">
+
+        <li>Problem Solving</li>
+        <li>Teamwork</li>
+        <li>Adaptability</li>
+        <li>Time Management</li>
+        <li>Communication</li>
+        <li>Hardworker</li>
+        <li>Organization Skills</li>
+
+      </ul>
+    </div>
+
+    <!-- Language -->
+    <div data-aos="fade-left">
+      <h2 class="text-xl font-semibold mb-2">Language</h2>
+      <ul class="list-disc list-inside text-gray-700">
+        <li>English</li>
+        <li>Filipino</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- General Weighted Average Section - Report Card Style -->
+<div class="mt-12 px-4 md:px-8" data-aos="fade-up">
+  <h2 class="text-2xl font-bold mb-4 text-center text-gray-800">General Weighted Average</h2>
+
+  <div class="bg-white shadow-2xl rounded-2xl p-6 md:p-10 border border-gray-200 max-w-3xl mx-auto">
+    <div class="flex justify-center mb-4">
+      <img src="Images/doc7.png" alt="GWA Report" class="rounded-xl shadow-md w-full max-w-full h-auto object-contain border border-gray-300">
+    </div>
+    <p class="text-center text-gray-600 mt-2 text-sm italic">
+      Shown above is a detailed report of subjects and grades that make up the general weighted average.
+    </p>
+  </div>
+</div>
+  
+<!-- Documentation with Lightbox2 and AOS Animations -->
+<h2 class="text-2xl font-semibold mt-8 mb-4" data-aos="fade-up">Documentation</h2>
+<p class="text-base text-gray-700 mb-4" data-aos="fade-up" data-aos-delay="100">
+  
+</p>
+
+<div class="documentation-gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  <a href="Images/doc5.jpg" data-lightbox="documentation" data-title="Screenshot 1">
+    <img src="Images/doc5.jpg" alt="Screenshot 1" data-aos="zoom-in">
+  </a>
+  <a href="Images/doc3.jpg" data-lightbox="documentation" data-title="Screenshot 2">
+    <img src="Images/doc3.jpg" alt="Screenshot 2" data-aos="zoom-in" data-aos-delay="100">
+  </a>
+  <a href="Images/doc1.jpg" data-lightbox="documentation" data-title="Screenshot 3">
+    <img src="Images/doc1.jpg" alt="Screenshot 3" data-aos="zoom-in" data-aos-delay="200">
+  </a>
+  <a href="Images/doc6.jpg" data-lightbox="documentation" data-title="Screenshot 4">
+    <img src="Images/doc6.jpg" alt="Screenshot 4" data-aos="zoom-in" data-aos-delay="300">
+  </a>
+  <a href="Images/doc2.jpg" data-lightbox="documentation" data-title="Screenshot 5">
+    <img src="Images/doc2.jpg" alt="Screenshot 5" data-aos="zoom-in" data-aos-delay="400">
+  </a>
+  <a href="Images/doc4.jpg" data-lightbox="documentation" data-title="Screenshot 6">
+    <img src="Images/doc4.jpg" alt="Screenshot 6" data-aos="zoom-in" data-aos-delay="500">
+  </a>
+</div>
+    </div>
+  </section>  
+
+  <!-- PROJECTS -->
+<section id="projects">
+    <h2>Projects</h2>
+    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+      <button class="toggle-btn" onclick="showProjectCategory('js')">JavaScript</button>
+      <button class="toggle-btn" onclick="showProjectCategory('py')">Python</button>
+    </div>
+  
+    <!-- JavaScript Projects -->
+    <div id="js-projects" class="project-category active">
+      <h3>JavaScript Projects</h3>
+      <ul>
+        <li>
+          <strong>Login Form</strong><br>
+          I developed a Login Form for secure user access.<br>
+          <a href="Files/LoginForm_jv.zip" download class="resume-btn">Download</a>
+        </li>
+        <li>
+          <strong>Data Base</strong><br>
+          I integrated a Database to store and manage user credentials.<br>
+          <a href="Files/DataBase_jv.zip" download class="resume-btn">Download</a>
+        </li>
+        <li>
+            <strong>GUI</strong><br>
+            I designed a GUI (Graphical User Interface) to provide an interactive user experience.<br>
+            <a href="Files/GUI_jv.zip" download class="resume-btn">Download</a>
+          </li>
+      </ul>
+    </div>
+  
+    <!-- Python Projects -->
+    <div id="py-projects" class="project-category">
+      <h3>Python Projects</h3>
+      <ul>
+        <li>
+          <strong>Solving Prelim Grades</strong><br>
+          I created a system for solving Prelim Grades with automated calculations.<br>
+          <a href="Files/SolvingPrelimGrades_py.zip" download class="resume-btn">Download</a>
+        </li>
+        <li>
+          <strong>Class Record</strong><br>
+          I developed a Class Record management tool for tracking student Grades.<br>
+          <a href="Files/ClassRecord_py.zip" download class="resume-btn">Download</a>
+        </li>
+        <li>
+            <strong>Login All Subject</strong><br>
+            I implemented a login system that supports multiple subjects for organized access.<br>
+            <a href="Files/LoginAllSubject_py.zip" download class="resume-btn">Download</a>
+          </li>
+          <li>
+            <strong>Personal Profile</strong><br>
+            I designed a Personal Profile interface to store and display user information.<br>
+            <a href="Files/PersonalProfile_py.zip" download class="resume-btn">Download</a>
+          </li>
+      </ul>
+    </div>
+  </section>
+  
+
+  <!-- RESUME -->
+  <section id="resume">
+    <div class="resume-container">
+      <div class="left-column">
+        <img src="Images/resumepic.jpg" alt="Profile Photo" class="profile-pic">
+        <h2>CONTACT</h2>
+        <p>📞 0994-320-7553</p>
+        <p>📧 tahudfrancisrei@gmail.com</p>
+        <p>📍 P-1 North Pob. Mar. Buk.</p>
+  
+        <h2>MY SKILLS</h2>
+        <p>Project Management</p>
+        <div class="skill-bar"><span style="width: 80%"></span></div>
+        <p>Problem Solving</p>
+        <div class="skill-bar"><span style="width: 89%"></span></div>
+        <p>Creativity</p>
+        <div class="skill-bar"><span style="width: 93%"></span></div>
+        <p>Leadership</p>
+        <div class="skill-bar"><span style="width: 75%"></span></div>
+        <p>Team Management</p>
+        <div class="skill-bar"><span style="width: 75%"></span></div>
+      </div>
+  
+      <div class="right-column">
+        <h1>FRANCIS REI <span>TAHUD</span></h1>
+        <h3 class="subtitle">Batchelor of Science in Information Technology</h3>
+  
+        <h2>PROFILE</h2>
+        <p>Francis Rei Tahud is a dedicated and experienced software developer with a passion for solving complex problems. With over 4 years of experience in the tech industry, Francis has honed his skills in various programming languages, including Python, Java, and C++.</p>
+  
+        <h2>EXPERIENCE</h2>
+        <h3>CodeFusion Software Development</h3>
+        <strong>Best Programmer</strong>
+        <ul>
+          <li>Creates innovative and efficient algorithms to solve complex problems for clients.</li>
+          <li>Collaborates with the Project Management team to ensure timely delivery of software projects.</li>
+        </ul>
+  
+        <h3>InnovaTech Programming Services</h3>
+        <strong>Programmer</strong>
+        <ul>
+          <li>Designs and implements custom software solutions for clients.</li>
+          <li>Collaborates closely with the testing team to ensure code quality.</li>
+        </ul>
+  
+        <h3>ByteBuilders Software Solutions</h3>
+        <strong>System Programming</strong>
+        <ul>
+          <li>Professional Development</li>
+          <li>Inventory Management Project</li>
+        </ul>
+  
+        <h2>EDUCATION</h2>
+        <p><strong>2028</strong> Philippine Countryville College Inc.<br><em>Bachelor of Science in Information Technology</em></p>
+        <p><strong>2024</strong> Philippine Countryville College Inc.<br><em>High School Graduate Diploma, 2024</em></p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- SETTINGS -->
+<section id="settings">
+    <h2>Settings</h2>
+    <button class="toggle-btn" onclick="setTheme('default')">🌐 Default Theme</button>
+    <button class="toggle-btn" onclick="setTheme('dark')">🌙 Dark Theme</button>
+    <button class="toggle-btn" onclick="setTheme('light')">🌞 Light Theme</button>
+  </section>  
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h3 id="modal-title"></h3>
+      <p id="modal-desc"></p>
+      <div class="close" onclick="closeModal()">Close</div>
+    </div>
+  </div>
+
+  <footer>&copy; Tahud | Digital Profile</footer>
+
+  <script>
+
+    function showProjectCategory(lang) {
+  document.getElementById('js-projects').classList.remove('active');
+  document.getElementById('py-projects').classList.remove('active');
+  if (lang === 'js') {
+    document.getElementById('js-projects').classList.add('active');
+  } else {
+    document.getElementById('py-projects').classList.add('active');
+  }
+}
+
+
+    let current = document.querySelector('.active');
+
+    function showSection(id) {
+      if (current.id !== id) {
+        current.classList.remove('active');
+        const next = document.getElementById(id);
+        next.classList.add('active');
+        current = next;
+      }
+    }
+
+    function setTheme(theme) {
+  document.body.className = ''; // clear all
+  if (theme === 'default') {
+    document.body.classList.add('default-theme');
+  } else if (theme === 'dark') {
+    document.body.classList.add('dark-theme');
+  } else if (theme === 'light') {
+    document.body.classList.add('light-theme');
+  }
+}
+
+    function openModal(project) {
+      const details = {
+        chat: {
+          title: "Real-Time Chat App",
+          desc: "Built using Socket.IO and Node.js for real-time communication."
+        },
+        library: {
+          title: "Library System",
+          desc: "Python-MySQL based system for managing books and student users."
+        },
+        portfolio: {
+          title: "Portfolio Website",
+          desc: "Responsive personal site built using HTML, CSS, JS."
+        }
+      };
+      document.getElementById('modal-title').innerText = details[project].title;
+      document.getElementById('modal-desc').innerText = details[project].desc;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <!-- Particles JS -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 60 },
+        color: { value: "#00ffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.4 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00ffff",
+          opacity: 0.3,
+          width: 1
+        },
+        move: { speed: 2 }
+      }
+    });
+  </script>
+</body>
+</html>
